@@ -8,8 +8,8 @@ set(TEST_SOURCE_FILES
     )
 
 add_executable(test_runner ${TEST_SOURCE_FILES})
+target_link_libraries(test_runner ${LIBS})
 
-# target_link_libraries(test_runner dsalgo)
 get_target_property(TEST_RUNNER_BIN test_runner LOCATION) # for running
 
 add_custom_target(check DEPENDS test_runner)
