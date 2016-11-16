@@ -6,5 +6,5 @@ using namespace slimsdl;
 
 Context::Context()
 {
-    SDL_Init(1);
+    SDL_Init(SDL_INIT_EVERYTHING);
 }

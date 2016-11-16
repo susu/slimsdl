@@ -16,6 +16,11 @@ endif(UNIX)
 
 set(LIBS ${LIBS})
 
+find_library(SDL2 SDL2_image REQUIRED)
+set(LIBS ${LIBS} SDL2 SDL2_image)
+
+message("LIBS: ${LIBS}")
+
 if(UNIX)
     if(enable_libc++)
         message("--> Looking for libc++ and libc++abi ...")
