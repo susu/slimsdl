@@ -6,6 +6,7 @@ include_directories(igloo)
 set(TEST_SOURCE_FILES
     test_runner.cpp
     Context.cpp
+    ImageContext.cpp
     )
 
 add_executable(test_runner ${TEST_SOURCE_FILES})
