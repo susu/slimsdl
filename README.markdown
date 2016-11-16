@@ -19,7 +19,7 @@ git, cmake, decent C++11 compiler (GCC 4.8 or clang 3.3)
 Steps
 -----
 
-{{{
+```
     git clone https://github.com/susu/slimsdl
     git submodule update --init
     cd slimsdl
@@ -28,17 +28,17 @@ Steps
     cmake ..
     make
     make install
-}}}
+```
 
 You might configure the install path:
-{{{
+```
     cmake -DCMAKE_INSTALL_PREFIX=<YOUR-INSTALL-PATH> ..
-}}}
+```
 
 
 If you want to use it in a CMake project, you can add it as an external project. E.g.:
 
-{{{
+```
 include(ExternalProject)
 
 ExternalProject_Add(
@@ -47,7 +47,7 @@ ExternalProject_Add(
     GIT_TAG v0.3
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_SOURCE_DIR}/thirdparty/
     )
-}}}
+```
 
 License
 =======
