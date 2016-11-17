@@ -33,4 +33,12 @@ Describe(AContext)
         slimsdl::Context context;
         AssertThat(SDL_WasInit(0), Equals(SDL_INIT_EVERYTHING));
     }
+
+    It(should_quit_sdl_after_context_is_destroyed)
+    {
+        {
+            slimsdl::Context context;
+        }
+        AssertThat(SDL_WasInit(0), Equals(0));
+    }
 };

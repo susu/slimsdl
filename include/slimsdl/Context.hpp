@@ -9,6 +9,7 @@ namespace slimsdl
     {
         public:
             Context();
+            ~Context();
     };
 }
 
