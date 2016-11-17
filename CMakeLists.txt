@@ -55,6 +55,21 @@ else(sanitize)
     message("--> Sanitizing is disabled.")
 endif(sanitize)
 
+## 3rd party libs
+
+include_directories(SYSTEM thirdparty/include)
+link_directories(${CMAKE_SOURCE_DIR}/thirdparty/lib)
+
+include(ExternalProject)
+ExternalProject_Add(
+    GOODIES
+    GIT_REPOSITORY https://github.com/susu/goodies
+    GIT_TAG v0.6
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_SOURCE_DIR}/thirdparty/
+    )
+
+list(APPEND LIBS goodies)
+
 add_subdirectory(src)
 add_subdirectory(test)
 
