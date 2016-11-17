@@ -1,4 +1,5 @@
 #include "igloo/igloo.h"
+#include <goodies/Logger.hpp>
 
 using namespace igloo;
 
@@ -50,5 +51,6 @@ int main(int argc, const char* argv[])
     runner.AddListener(&listener);
   }
 
+  goodies::log::Logger::initialize(std::cout);
   return runner.Run();
 }
