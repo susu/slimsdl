@@ -44,7 +44,7 @@ namespace simplemock
     }
 
     struct WindowStub {
-        const char* title;
+        std::string title;
         int x; int y;
         int width; int height;
         uint32_t flags;
