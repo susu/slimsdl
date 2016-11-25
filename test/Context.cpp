@@ -1,9 +1,5 @@
 #include <igloo/igloo_alt.h>
-
 #include <slimsdl/Context.hpp>
-
-// #include "sdl_mock.hpp"
-// #include "simple_sdl_mock.hpp"
 #include <SDL2/SDL.h>
 
 using namespace igloo;
