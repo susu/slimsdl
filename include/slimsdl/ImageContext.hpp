@@ -28,13 +28,6 @@ namespace slimsdl {
         public:
             ImageContext(std::set<IMGInitFlag> flags);
             ~ImageContext();
-
-            int getInitializedFormatRawFlag() {
-                return m_initializedImageFormats;
-            }
-
-        private:
-            int m_initializedImageFormats = 0;
     };
 }
 

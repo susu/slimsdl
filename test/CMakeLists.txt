@@ -5,6 +5,7 @@ include_directories(igloo)
 
 set(TEST_SOURCE_FILES
     test_runner.cpp
+    simple_sdl_mock.cpp
     Context.cpp
     ImageContext.cpp
     )

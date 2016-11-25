@@ -1,19 +1,40 @@
 #ifndef SLIMTEST_SDL_SIMPLE_SDL_MOCK_HPP_INC
 #define SLIMTEST_SDL_SIMPLE_SDL_MOCK_HPP_INC
 
+#include <memory>
+
 namespace simplemock
 {
-    static bool sdl_initialized = false;
-    static int sdl_init_flags = 0;
-}
+    class SDLMock {
+        public:
+            static SDLMock& instance() {
+                if (!m_instance)
+                    reset();
+                return *m_instance;
+            }
 
-extern "C"
-{
-    int SDL_Init(int flags)
-    {
-        simplemock::sdl_initialized = true;
-        simplemock::sdl_init_flags = flags;
-        return 0;
+            static void reset() {
+                m_instance.reset(new SDLMock());
+            }
+
+            // Mock interface
+            // {
+            bool initialized = false;
+            int initFlags = 0;
+
+            bool imgInitialized = false;
+            int imgInitFlags = 0;
+            // }
+        private:
+            static std::unique_ptr<SDLMock> m_instance;
+    };
+
+    static SDLMock& sdl() {
+        return SDLMock::instance();
+    }
+
+    static void reset() {
+        SDLMock::reset();
     }
 }
 
