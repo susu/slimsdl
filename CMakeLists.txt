@@ -72,6 +72,7 @@ list(APPEND LIBS goodies)
 
 add_subdirectory(src)
 add_subdirectory(test)
+add_subdirectory(examples)
 
 ## Install section
 install(DIRECTORY include DESTINATION .)
