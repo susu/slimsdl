@@ -3,6 +3,7 @@ set(SOURCE_FILES
     Context.cpp
     ImageContext.cpp
     Window.cpp
+    Renderer.cpp
     )
 
 message("--> LIBS: ${LIBS}")

@@ -6,6 +6,7 @@
 namespace simplemock
 {
     struct WindowStub;
+    struct RendererStub;
 
     class SDLMock {
         public:
@@ -30,6 +31,8 @@ namespace simplemock
             int imgInitFlags = 0;
 
             WindowStub* lastWindow = nullptr;
+
+            RendererStub* lastRenderer = nullptr;
             // }
         private:
             static std::unique_ptr<SDLMock> m_instance;
@@ -47,6 +50,12 @@ namespace simplemock
         std::string title;
         int x; int y;
         int width; int height;
+        uint32_t flags;
+    };
+
+    struct RendererStub {
+        WindowStub* window;
+        int index;
         uint32_t flags;
     };
 }

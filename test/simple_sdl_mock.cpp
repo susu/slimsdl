@@ -2,6 +2,7 @@
 #include "simple_sdl_mock.hpp"
 #include <SDL2/SDL.h>
 #include <goodies/enforce.hpp>
+#include <goodies/Logger.hpp>
 
 using namespace simplemock;
 std::unique_ptr<SDLMock> SDLMock::m_instance = nullptr;
@@ -39,6 +40,7 @@ extern "C"
     {
         ENFORCE(sdl().lastWindow == nullptr,
                 "A Window already defined! simplemock allows only one window at a time!");
+        LOG_DEBUG("MOCK title=", title);
         auto stub = new WindowStub{
             .title = title,
             .x = x, .y = y,
@@ -50,8 +52,35 @@ extern "C"
     }
 
     void SDL_DestroyWindow(SDL_Window* win) {
+        LOG_DEBUG("MOCK");
         delete sdl().lastWindow;
         sdl().lastWindow = nullptr;
+    }
+
+    const char* SDL_GetWindowTitle(SDL_Window * window)
+    {
+        ENFORCE(sdl().lastWindow != nullptr,
+                "Getting window title without WindowStub is not allowed!");
+        return reinterpret_cast<WindowStub*>(window)->title.c_str();
+    }
+
+    SDL_Renderer* SDL_CreateRenderer(SDL_Window * window, int index, Uint32 flags)
+    {
+        ENFORCE(sdl().lastRenderer == nullptr,
+                "A Renderer already defined! simplemock allows only one renderer at a time!");
+        auto stub = new RendererStub{
+            .window = reinterpret_cast<WindowStub*>(window),
+            .index = index,
+            .flags = flags
+        };
+        sdl().lastRenderer = stub;
+        return reinterpret_cast<SDL_Renderer*>(stub);
+    }
+
+    void SDL_DestroyRenderer(SDL_Renderer * renderer)
+    {
+        delete sdl().lastRenderer;
+        sdl().lastRenderer = nullptr;
     }
 }
 

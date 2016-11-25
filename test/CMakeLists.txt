@@ -9,6 +9,7 @@ set(TEST_SOURCE_FILES
     Context.cpp
     ImageContext.cpp
     Window.cpp
+    Renderer.cpp
     )
 
 add_executable(test_runner ${TEST_SOURCE_FILES})
