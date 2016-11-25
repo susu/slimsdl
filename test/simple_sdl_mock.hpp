@@ -5,6 +5,8 @@
 
 namespace simplemock
 {
+    struct WindowStub;
+
     class SDLMock {
         public:
             static SDLMock& instance() {
@@ -24,6 +26,8 @@ namespace simplemock
 
             bool imgInitialized = false;
             int imgInitFlags = 0;
+
+            WindowStub* lastWindow = nullptr;
             // }
         private:
             static std::unique_ptr<SDLMock> m_instance;
@@ -36,6 +40,13 @@ namespace simplemock
     static void reset() {
         SDLMock::reset();
     }
+
+    struct WindowStub {
+        const char* title;
+        int x; int y;
+        int width; int height;
+        uint32_t flags;
+    };
 }
 
 #endif

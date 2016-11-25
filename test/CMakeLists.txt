@@ -8,6 +8,7 @@ set(TEST_SOURCE_FILES
     simple_sdl_mock.cpp
     Context.cpp
     ImageContext.cpp
+    Window.cpp
     )
 
 add_executable(test_runner ${TEST_SOURCE_FILES})
