@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project(__write_your_project_name_here__)
 
+message("--> CXX: ${CMAKE_CXX_COMPILER}")
+
 ###########
 # OPTIONs
 
@@ -60,12 +62,17 @@ endif(sanitize)
 include_directories(SYSTEM thirdparty/include)
 link_directories(${CMAKE_SOURCE_DIR}/thirdparty/lib)
 
+list(APPEND EXTPROJ_CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_SOURCE_DIR}/thirdparty/)
+list(APPEND EXTPROJ_CMAKE_ARGS -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER})
+
+message("--> EXTPROJ_CMAKE_ARGS: ${EXTPROJ_CMAKE_ARGS}")
+
 include(ExternalProject)
 ExternalProject_Add(
     GOODIES
     GIT_REPOSITORY https://github.com/susu/goodies
     GIT_TAG v0.6
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_SOURCE_DIR}/thirdparty/
+    CMAKE_ARGS ${EXTPROJ_CMAKE_ARGS}
     )
 
 list(APPEND LIBS goodies)

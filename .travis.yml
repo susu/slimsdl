@@ -1,0 +1,18 @@
+language: cpp
+dist: trusty
+install:
+    - sudo apt-get install libsdl2-dev libsdl2-image-dev
+env:
+    - COMPILER=clang++-3.6
+script:
+    - mkdir build/ && cd build/
+    - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make && make check
+addons:
+    apt:
+        sources:
+            # add PPAs with more up-to-date toolchains
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-3.6
+        packages:
+            # install toolchains
+            - clang-3.6
