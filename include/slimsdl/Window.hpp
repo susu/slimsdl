@@ -4,6 +4,7 @@
 #include <string>
 #include <set>
 #include <SDL2/SDL_video.h>
+#include <slimsdl/utils.hpp>
 
 namespace slimsdl
 {
@@ -27,13 +28,19 @@ namespace slimsdl
 
     std::ostream& operator<<(std::ostream& out, WindowFlag);
 
-    class Window
+    class Window : NonTransferable
     {
         public:
-            Window(std::string title, int x, int y, int width, int height, std::set<WindowFlag> flags);
+            Window(std::string title, int x, int y, int width, int height,
+                   std::set<WindowFlag> flags);
             ~Window();
+
+            SDL_Window* getHandle() const { return m_window; }
+
         private:
             SDL_Window* m_window;
+
+            friend std::ostream& operator<<(std::ostream&, const Window &);
     };
 }
 

@@ -6,6 +6,18 @@
 
 using namespace slimsdl;
 
+std::ostream& slimsdl::operator<<(std::ostream& o, const Window & window)
+{
+   return o << "<Window: title=" << SDL_GetWindowTitle(window.m_window) <<
+               ", x=" << 0 << ", y=" << 0 <<
+               ", width="<< 0 << ", height=" << 0 << ">";
+}
+
+std::ostream& slimsdl::operator<<(std::ostream& o, WindowFlag flag)
+{
+    return o;
+}
+
 Window::Window(std::string title, int x, int y, int width, int height, std::set<WindowFlag> flags)
 {
     LOG_DEBUG("Create window: ", title);
