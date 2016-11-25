@@ -1,7 +1,7 @@
 
 #include "simple_sdl_mock.hpp"
 #include <SDL2/SDL.h>
-
+#include <goodies/enforce.hpp>
 
 using namespace simplemock;
 std::unique_ptr<SDLMock> SDLMock::m_instance = nullptr;
@@ -37,6 +37,8 @@ extern "C"
                                  int x, int y,
                                  int width, int height, uint32_t flags)
     {
+        ENFORCE(sdl().lastWindow == nullptr,
+                "A Window already defined! simplemock allows only one window at a time!");
         auto stub = new WindowStub{
             .title = title,
             .x = x, .y = y,
