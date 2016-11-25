@@ -2,6 +2,7 @@
 
 #include <slimsdl/ImageContext.hpp>
 
+#include <slimsdl/exc.hpp>
 #include <slimsdl/Context.hpp>
 #include <SDL2/SDL.h>
 #include "simple_sdl_mock.hpp"
@@ -26,5 +27,10 @@ Describe(AnImageContext)
             slimsdl::ImageContext imgContext({slimsdl::IMGInitFlag::PNG});
         }
         AssertThat(sdl().imgInitialized, Equals(false));
+    }
+
+    It(should_throw_if_cannot_initialize) {
+        sdl().imgInitReturnMask = 0x0;
+        AssertThrows(slimsdl::SDLException, slimsdl::ImageContext({slimsdl::IMGInitFlag::PNG}));
     }
 };

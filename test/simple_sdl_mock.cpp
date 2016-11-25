@@ -25,7 +25,7 @@ extern "C"
     int IMG_Init(int flags) {
         sdl().imgInitialized = true;
         sdl().imgInitFlags = flags;
-        return flags;
+        return flags & sdl().imgInitReturnMask;
     }
 
     void IMG_Quit() {

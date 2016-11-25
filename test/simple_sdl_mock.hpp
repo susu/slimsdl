@@ -22,10 +22,10 @@ namespace simplemock
             // Mock interface
             // {
             int initReturnValue = 0;
-
             bool initialized = false;
             int initFlags = 0;
 
+            uint32_t imgInitReturnMask = 0xffffffff;
             bool imgInitialized = false;
             int imgInitFlags = 0;
 
