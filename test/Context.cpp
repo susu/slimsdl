@@ -1,14 +1,16 @@
 #include <igloo/igloo_alt.h>
 #include <slimsdl/Context.hpp>
+#include <slimsdl/exc.hpp>
+#include "simple_sdl_mock.hpp"
 #include <SDL2/SDL.h>
 
 using namespace igloo;
+using simplemock::sdl;
 
 Describe(AContext)
 {
-
     void SetUp() {
-        SDL_Quit();
+        simplemock::reset();
     }
 
     It(can_be_instantiated)
@@ -36,5 +38,10 @@ Describe(AContext)
             slimsdl::Context context;
         }
         AssertThat(SDL_WasInit(0), Equals(0));
+    }
+
+    It(should_throw_if_initialization_is_failed) {
+        sdl().initReturnValue = -1;
+        AssertThrows(slimsdl::SDLException, slimsdl::Context());
     }
 };

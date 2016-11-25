@@ -11,7 +11,7 @@ extern "C"
     int SDL_Init(uint32_t flags) {
         sdl().initialized = true;
         sdl().initFlags = flags;
-        return 0;
+        return sdl().initReturnValue;
     }
 
     uint32_t SDL_WasInit(uint32_t mask) {

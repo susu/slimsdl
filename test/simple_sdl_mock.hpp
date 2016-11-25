@@ -21,6 +21,8 @@ namespace simplemock
 
             // Mock interface
             // {
+            int initReturnValue = 0;
+
             bool initialized = false;
             int initFlags = 0;
 
