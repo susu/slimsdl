@@ -39,7 +39,7 @@ endif(UNIX)
 
 include_directories(include)
 
-add_definitions(-std=c++11
+add_definitions(-std=c++14
                 -Wall
                 -Werror
                 -g
