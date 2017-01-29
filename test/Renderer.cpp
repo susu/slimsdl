@@ -38,6 +38,6 @@ Describe(ARenderer) {
     It(should_create_renderer_with_flags) {
         Renderer renderer(*window, {RendererFlag::Accelerated, RendererFlag::PresentVSync});
         AssertThat(sdl().lastRenderer->flags,
-                   Equals(SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC));
+                   Equals(uint32_t(SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)));
     }
 };

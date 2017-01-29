@@ -16,14 +16,14 @@ Describe(AContext)
     It(can_be_instantiated)
     {
         // pre-check that is not initialized
-        AssertThat(SDL_WasInit(0), Equals(0));
+        AssertThat(SDL_WasInit(0), Equals(0u));
         slimsdl::Context context;
     }
 
     It(should_call_sdl_init)
     {
         slimsdl::Context context;
-        AssertThat(SDL_WasInit(0), Is().Not().EqualTo(0));
+        AssertThat(SDL_WasInit(0), Is().Not().EqualTo(0u));
     }
 
     It(should_initialize_sdl_for_everything)
@@ -37,7 +37,7 @@ Describe(AContext)
         {
             slimsdl::Context context;
         }
-        AssertThat(SDL_WasInit(0), Equals(0));
+        AssertThat(SDL_WasInit(0), Equals(0u));
     }
 
     It(should_throw_if_initialization_is_failed) {

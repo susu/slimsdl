@@ -42,6 +42,8 @@ namespace slimsdl
 
             friend std::ostream& operator<<(std::ostream&, const Window &);
     };
+
+    std::ostream& operator<<(std::ostream& out, const Window&);
 }
 
 #endif

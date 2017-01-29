@@ -36,6 +36,6 @@ Describe(AWindow) {
     It(creates_window_with_flags) {
         Context context;
         Window window("title", 1,2,3,4, {WindowFlag::FullScreen, WindowFlag::Shown});
-        AssertThat(sdl().lastWindow->flags, Equals(SDL_WINDOW_FULLSCREEN | SDL_WINDOW_SHOWN));
+        AssertThat(sdl().lastWindow->flags, Equals(uint32_t(SDL_WINDOW_FULLSCREEN | SDL_WINDOW_SHOWN)));
     }
 };
